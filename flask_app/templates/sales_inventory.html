@@ -32,21 +32,22 @@
                     </tr>
                 </thead>
                 <tbody>
-                    {% for product in inventory %}
+                    {% for product in products %}
                         <tr>
                             <td>{{product.product_name}}</td>
                             <td>{{product.part_number}}</td>
                             <td>{{product.product_info}} </td>
                             <td>{{product.install_time}} hours</td>
-                            <td>{{product.install_on_hand}}</td>
-                            <td>{{product.install_needed}}</td>
+                            <td>{{product.inventory_on_hand}}</td>
+                            <td>{{product.inventory_needed}}</td>
                             <td>
     
     
-                            {% if job.user_id == session.user_id %}
+                            {% if product.user_id == session.user_id %}
                                 <a href="/destroy_product/{{product.id}}">Delete |</a>
-                            {% else %}
                                 <a href="/edit_product/{{product.id}}"> Edit</a>
+                            {% else %}
+                                <a href="/view_product/{{product.id}}"> view</a>
                             {% endif %}
                             </td>
                         </tr>
@@ -54,7 +55,7 @@
                 </tbody>
                 </table>
                 <div class="d-flex align-items-end flex-column">
-                    <a type="hidden" href="/proposal" class="d-inline-flex col-2 justify-content-around btn btn-outline-primary my-2  ">New Proposal!</a>
+                    <a type="hidden" href="/newinventory" class="d-inline-flex col-2 justify-content-around btn btn-outline-primary my-2  ">New Product!</a>
             </div>
 </body>
 

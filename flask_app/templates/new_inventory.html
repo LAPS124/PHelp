@@ -16,7 +16,7 @@
 
         </div>
     </nav>
-    <form action="/create/job/" method="post" class="col-11 p-4 my-4 bg-secondary text-light mx-auto">
+    <form action="/create_product/" method="post" class="col-11 p-4 my-4 bg-secondary text-light mx-auto">
         <h2 class="text-primary">New Product:</h2>
         {% with messages = get_flashed_messages(category_filter=['product']) %}
             {% if messages %}
@@ -30,16 +30,13 @@
         {% endwith %}
 
         <div class="d-flex justify-content-between col-9">
-            <input type="hidden" name="id" value="{{edit_product.id}}">
             <div class="col-4">
                 <div class="form-group">
                     <label for="product_name">Product Name:</label>
                     <textarea name="product_name" class="form-control" cols="30" rows=""></textarea>
                 </div>
-                <div class="form-group">
-                    <label for="part_number">Part Number:</label>
-                    <textarea name="part_number" class="form-control" cols="30" rows=""></textarea>
-                </div>
+                <label for="price">Part Number:</label>
+                    <input type="number" name="part_number" class="form-control" ></input>
                 <div class="form-group">
                     <label for="product_info">Product Info:</label>
                     <textarea name="product_info" class="form-control" cols="50" rows=""></textarea>

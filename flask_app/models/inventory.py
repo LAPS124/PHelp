@@ -12,12 +12,11 @@ class Product:
 
     def __init__ (self,db_data):
         self.id= db_data['id']
-        self.product_namer= db_data['product_name']
+        self.product_name= db_data['product_name']
         self.part_number= db_data['part_number']
         self.product_info= db_data['product_info']
         self.price= db_data['price']
         self.install_time= db_data['install_time']
-        self.starting_inventory= db_data['starting_inventory']
         self.inventory_on_hand= db_data['inventory_on_hand']
         self.inventory_needed= db_data['inventory_needed']
         self.created_at= db_data['created_at']
@@ -27,7 +26,7 @@ class Product:
 
     @classmethod
     def save_product(cls,data):
-        query = "INSERT INTO product (product_name, part_number, product_info, price, install_time, starting_inventory, inventory_on_hand, 'inventory_needed, user_id) Values (%(product_name)s, %(part_number)s, %(product_info)s, %(price)s, %(install_time)s, %(starting_inventory)s, %(inventory_on_hand)s, %(inventory_needed)s, %(user_id)s);"
+        query = "INSERT INTO product (product_name, part_number, product_info, price, install_time, inventory_on_hand, inventory_needed, user_id) Values (%(product_name)s, %(part_number)s, %(product_info)s, %(price)s, %(install_time)s,  %(inventory_on_hand)s, %(inventory_needed)s, %(user_id)s);"
         return connectToMySQL(cls.db).query_db(query,data)
     
     @classmethod
@@ -96,14 +95,11 @@ class Product:
         if len(product['install_time']) ==0:
             is_valid = False
             flash("install time must be longer than 0", "product")
-        if len(product['starting_inventory']) ==0:
-            is_valid = False
-            flash("starting invenorty must be longer than 0", "product")
         if len(product['inventory_on_hand']) ==0:
             is_valid = False
             flash("inventory on hand must be longer than 0", "product")
         if len(product['inventory_needed']) ==0:
             is_valid = False
-            flash("inventory must be longer than 0", "product")
+            flash("inventory needed must be longer than 0", "product")
         return is_valid
     
