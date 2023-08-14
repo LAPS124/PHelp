@@ -31,14 +31,14 @@ def proposal():
     data = {
             "id":session['user_id']
         }
-    return render_template('proposal.html', user=User.getOne(data))
+    return render_template('proposal.html', user=User.getOne(data), stuff=Product.get_all_product())
 #create
 @app.route('/create/job/', methods= ['POST'])
 def create_job():
     if 'user_id' not in session:
         return redirect ('/logout')
     if not Job.validate_sales(request.form):
-        return redirect ('/new/job')
+        return redirect ('/proposal')
     data = {
         "customer":request.form["customer"],
         "location":request.form["location"],

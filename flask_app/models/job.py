@@ -87,9 +87,9 @@ class Job:
         if len(job['needed_by']) == 0:
             is_valid = False
             flash("Please put in a valid date", "job")
-        if len(job['item']) < 3 :
+        if len(job['item']) == 0 :
             is_valid = False
-            flash("Items must be longer than 3 characters. ", "job")
+            flash("Please pick a Item ", "job")
         if len(job['scope']) < 10:
             is_valid = False
             flash("scope must be at least 10 characters", "job")

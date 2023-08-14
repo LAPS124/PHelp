@@ -30,6 +30,12 @@ class Product:
         return connectToMySQL(cls.db).query_db(query,data)
     
     @classmethod
+    def product_name(cls):
+        query = 'SELECT product_name FROM product;'
+        return connectToMySQL(cls.db).query_db(query)
+
+
+    @classmethod
     def get_all_product(cls):
         query = 'SELECT * FROM product;'
         results = connectToMySQL(cls.db).query_db(query)
@@ -80,9 +86,9 @@ class Product:
     @staticmethod
     def validate_products(product):
         is_valid=True
-        if len(product['product_name']) <3:
+        if len(product['product_name']) <1:
             is_valid = False
-            flash("name must be longer than 3 characters", "product")
+            flash("name must be longer than 1 character", "product")
         if len(product['part_number']) == 0:
             is_valid = False
             flash("partnumber must be larger than 0", "product")
